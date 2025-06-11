@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MONÁSAIGON - MONÁ MADE </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body{
+    margin:0px;
+    padding:0px;
+    font-family: Arial, sans-serif;
+}
+/* === banner === */
+header{
+      
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.banner {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+
+.banner img {
+      width: 100%;
+      max-height: 800px;
+      object-fit: cover;
+      display: block;
+    }
+.banner .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+.banner .icon-bar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 25px;
+      z-index: 10;
+    }
+.icon-button {
+      position: relative;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+.icon-button:hover {
+      transform: scale(1.2);
+    }
+.icon-button .count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 50%;
+    }
+  /* === menu === */
+    .menu {
+      background: linear-gradient(to right, hwb(305 76% 4%), #ff9df7);
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      font-family: Arial, sans-serif;
+      margin: 0 auto;
+      font-size: 28px;    
+    }
+
+    .menu > li {
+      list-style: none;
+      margin: 0 30px;
+      position: relative;
+    }
+
+    .menu > li > a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      padding: 10px;
+      display: block;
+    }
+ .menu a:hover {
+  color:#0b03ff;
+ }
+    /* Submenu */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: linear-gradient(to left, hwb(307 89% 1%), #f6c8f2);
+      min-width: 150px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 99;
+      margin:10px;
+      font-size: 18px;    
+    }
+    .submenu li {
+      list-style: none;
+      margin:0 auto;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #ffc0cb;
+      min-width: 180px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .submenu li {
+      list-style: none;
+      border-bottom: 1px solid #f0a1b8;
+    }
+
+    .submenu li:last-child {
+      border-bottom: none;
+    }
+
+    .submenu li a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: black;
+      transition: background-color 0.3s;
+    }
+
+    .submenu li a:hover {
+      background-color: #ffb6c1;
+    }
+
+    .menu > li:hover .submenu {
+      display: block;
+    }
+    /* giữa */
+article {
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+article h3 {
+  text-align: center;
+  color: #c2185b;
+  margin-bottom: 20px;
+}
+
+article form {
+  display: flex;
+  flex-direction: column;
+}
+
+article form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+article form button {
+  padding: 10px;
+  background-color: #d4467f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+article form button:hover {
+  background-color: #1914ad;
+}
+.register-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.register-container h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #d63384;
+}
+
+.register-form > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px; /* thay thế margin-bottom trên input */
+}
+
+.register-form label {
+  flex: 0 0 120px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.register-form input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border 0.2s;
+}
+
+.register-form input:focus {
+  border-color: #ff69b4;
+  outline: none;
+}
+
+.register-form button {
+  background-color: #ff69b4;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #e60073;
+}
+
+
+    /*trang cuối */
+    footer{
+     background: #f7f7f7;
+      padding: 10px 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: #000;
+      margin:0px;
+}
+.footer-col {
+      margin:0px;
+      margin-bottom: 0px;
+      flex: 1 1 25%;
+      text-align:left;
+    }
+.footer h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      padding:0px;
+    }
+.footer p, .footer a {
+      font-size: 15px;
+      margin-bottom: 8px;
+      display: block;
+      float:left;   
+    }
+.footer a:hover {
+      color: #a933bc;
+    }
+.social-icons {
+      margin-top: 20px;
+    }
+.social-icons a {
+      margin-right: 10px;
+      display: inline-block;
+    }
+.social-icons img {
+      width: 32px;
+      height: 32px;
+    }
+.contact-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+.contact-icons img {
+      width: 50px;
+      height: 50px;
+    }    
+a{
+  color:black;
+  text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+        <div>
+            <header>
+                <div class="banner">
+                    <div class="icon-bar">
+                    <div>
+                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="icon-button" title="Giỏ hàng">
+                        <a href="giohang.html" style="color:white;"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="count">2</span>
+                    </div>
+                        <div class="icon-button" title="Đăng nhập">
+                            <a href="dangky.html" style="color:white;"><i class="fas fa-user"></i></a>
+                    </div>
+                    </div>
+                    <img src="img/banner.jpg" alt="Banner Mona Saigon">
+                    <div class="overlay">
+                    </div>
+                </div>
+            </header>
+            <div>
+                <ul class="menu">
+                    <li><a href="Trangchu.html">Trang chủ</a></li>
+                    <li>
+                    <a href="NEW COLLECTION.html">Sản phẩm</a>
+                    <ul class="submenu">
+                        <li><a href="NEW COLLECTION.html">NEW COLLECTION</a></li>
+                        <li><a href="TOPS.html">TOPS</a></li>
+                        <li><a href="BEST SELLERS.html">BEST SELLERS</a></li>
+                        <li><a href="CLEARANCE SALE.html">CLEARANCE SALE</a></li>
+                        <li><a href="CARDIGAN.html">CARDIGAN</a></li>
+                        <li><a href="LONG SLEEVES.html">LONG SLEEVES</a></li>
+                        <li><a href="BASIC ITEMS.html">BASIC ITEM</a></li>
+                        <li><a href="SHORTS.html">SHORTS</a></li>
+                        <li><a href="SET.html">PANTS</a></li>
+                        <li><a href="DRESS.html">DRESS</a></li>
+                        <li><a href="SKIRTS.html">SKIRTS</a></li>
+                        <li><a href="SET.html">SET</a></li>
+                        <li><a href="ACCESSORIES.html">ACCESSORIES</a></li>
+                        <li><a href="BABY TEE.html">BABY TEE</a></li>
+                        <li><a href="TRADITIONAL ITEMS.html">TRADITIONAL ITEMS</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="Lienhe.html">Liên hệ</a></li>
+                    <li><a href="tintuc.html">Tin tức </a></li>
+                    <li><a href="vanchuyen.html">Vận chuyển </a></li>
+                </ul>
+            </div>
+                <article>
+                    <div class="register-container">
+                        <h3>Đăng ký thành viên</h3>
+                        <form action="Register.php" method="post" class="register-form">
+                        <div>
+                            <label for="username">Họ và tên</label>
+                            <input name="id" id="username" type="text" placeholder="Nhập tên đăng nhập" required />
+                        </div>
+                        <div>
+                            <label for="password">Tài khoản </label>
+                            <input name="password" id="password" type="password" placeholder="Nhập mật khẩu" required />
+                        </div>
+                        <div>
+                            <label for="fullname">Mật khẩu</label>
+                            <input name="fullname" id="fullname" type="text" placeholder="Nhập họ tên đầy đủ" required />
+                        </div>
+                        <button type="submit">Đăng ký</button>
+                        </form>
+                    </div>
+                </article>
+
+            <footer>
+               <div class="footer-col">
+                    <h1><strong> Moná Saigon </strong></h1>
+                    <p>
+                        Monásaigon là nền tảng bán lẻ mặt hàng thời trang hàng đầu Đông Nam Á, chuyên cung cấp sản phẩm theo xu hướng mới nhất, mang đến trải nghiệm mua sắm thời trang quốc tế đơn giản cho giới trẻ Việt.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/monasaigon"><img src="img/Facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/monasaigon/"><img src="img/instagram.jpg" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@monasaigon?_t=ZS-8wZUNDcDuP2&_r=1"><img src="img/tiktok.png" alt="TikTok"></a>
+                        <a href="https://www.lazada.vn/shop/mona-saigon/"><img src="img/Lazada.png" alt="Lazada"></a>
+                        <a href="https://shopee.vn/monasaigon"><img src="img/shopee.jpg" alt="Shopee"></a>
+                    </div>
+               </div>
+    <div class="footer-col">
+        <h3>GIỚI THIỆU</h3>
+        <a href="Trangchi.html">Về MONÁSAIGON </a><br/>
+        <a href="Lienhe.html">Liên Hệ</a><br/>
+        <a href="#">Tin Tức</a>
+    </div>
+    <div class="footer-col">
+        <h3>CHÍNH SÁCH BÁN HÀNG</h3><br/>
+        <a href="#">Chính Sách Vận Chuyển</a><br/>
+        <a href="#">Chính Sách Đổi - Trả Hàng</a><br/>
+        <a href="#">Chính Sách Bảo Mật</a>
+    </div>
+    <div class="footer-col">
+        <h3>THÔNG TIN LIÊN HỆ</h3>
+        <p>Tên công ty: Thương Hiệu Thời Trang nữ MONÁSAIGON</p>
+      <p>Địa chỉ: <a href="https://maps.app.goo.gl/G4xAnP86u8nVKHMB7">4E Võ Thị Sáu, Phường Tân Định, Quận 1, TP. Hồ Chí Minh, Việt Nam</a></p>
+        <p>Liên hệ đặt hàng(Zalo): <a href=" https://zalo.me/0862497780 ">086 249 7780 </a></p>
+        <p>Email: </p>
+    </div>
+        <p style="text-align: center;">@Monásaigon</p>
+            </footer>
+        </div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MONÁSAIGON - MONÁ MADE </title>
+    <link href="trangchu.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </style>
+</head>
+<body>
+        <div>
+            <header>
+                <div class="banner">
+                    <div class="icon-bar">
+                    <div>
+                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <div class="icon-button" title="Giỏ hàng">
+                        <a href="giohang.html" style="color:white;"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="count">2</span>
+                    </div>
+                        <div class="icon-button" title="Đăng nhập">
+                            <a href="dangky.html" style="color:white;"><i class="fas fa-user"></i></a>
+                    </div>
+                    </div>
+                    <img src="img/banner.jpg" alt="Banner Mona Saigon">
+                    <div class="overlay">
+                    </div>
+                </div>
+            </header>
+            <div>
+                <ul class="menu">
+                    <li><a href="Trangchu.html">Trang chủ</a></li>
+                    <li>
+                    <a href="#">Sản phẩm</a>
+                    <ul class="submenu">
+                        <li><a href="NEW COLLECTION.html">NEW COLLECTION</a></li>
+                        <li><a href="TOPS.html">TOPS</a></li>
+                        <li><a href="BEST SELLERS.html">BEST SELLERS</a></li>
+                        <li><a href="CLEARANCE SALE.html">CLEARANCE SALE</a></li>
+                        <li><a href="CARDIGAN.html">CARDIGAN</a></li>
+                        <li><a href="LONG SLEEVES.html">LONG SLEEVES</a></li>
+                        <li><a href="BASIC ITEMS.html">BASIC ITEM</a></li>
+                        <li><a href="SHORTS.html">SHORTS</a></li>
+                        <li><a href="SET.html">PANTS</a></li>
+                        <li><a href="DRESS.html">DRESS</a></li>
+                        <li><a href="SKIRTS.html">SKIRTS</a></li>
+                        <li><a href="SET.html">SET</a></li>
+                        <li><a href="ACCESSORIES.html">ACCESSORIES</a></li>
+                        <li><a href="BABY TEE.html">BABY TEE</a></li>
+                        <li><a href="TRADITIONAL ITEMS.html">TRADITIONAL ITEMS</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="Lienhe.html">Liên hệ</a></li>
+                    <li><a href="tintuc.html">Tin tức </a></li>
+                    <li><a href="vanchuyen.html">Vận chuyển </a></li>
+                </ul>
+            </div>
+            <h1>SẢN PHẨM <span>NỔI BẬT</span></h1>
+                <div class="slideshow-row">
+                <div class="slide" id="slide0"></div>
+                <div class="slide" id="slide1"></div>
+                <div class="slide" id="slide2"></div>
+                </div>
+
+                <script>
+                const images = [
+                    "anh/1.jpg",
+                    "anh/2.jpg",
+                    "anh/3.jpg",
+                    "anh/4.jpg",
+                    "anh/5.jpg",
+                    "anh/6.jpg",
+                    "anh/7.jpg",
+                    "anh/8.jpg",
+                    "anh/9.jpg",
+                ];
+
+                // Danh sách link tương ứng với từng ảnh
+                const links = [
+                    "NEW COLLECTION.html",
+                    "TOPS.html",
+                    "BEST SELLERS.html",
+                    "CLEARANCE SALE.html ",
+                    "CARDIGAN.html",
+                    "LONG SLEEVES.html",
+                    "BASIC ITEMS.html",
+                    "PANTS.html",
+                    "ACCESSORIES.html",
+                ];
+
+                let indexes = [0, 1, 2];
+
+                function updateSlides() {
+                    for (let i = 0; i < 3; i++) {
+                    const slide = document.getElementById(`slide${i}`);
+                    const imageIndex = indexes[i];
+                    slide.innerHTML = `
+                        <a href="${links[imageIndex]}" target="_blank">
+                        <img src="${images[imageIndex]}" alt="Slide">
+                        </a>`;
+                    indexes[i] = (indexes[i] + 1) % images.length;
+                    }
+                }
+
+                // Gọi hàm cập nhật mỗi 3 giây
+                setInterval(updateSlides, 3000);
+                updateSlides(); // Khởi tạo lần đầu
+                </script>
+
+            <article>
+                <DIV>
+                    <h1>SẢN PHẨM <span>NHIỀU NGƯỜI MUA </span></h1>
+                </DIV>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="BEST SELLERS/2.jpg" />
+                        <div class="btn-container">
+                            <a href="BEST SELLERS.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>
+                <div class="product-item">
+                    <img src="ACCESSORIES/1.jpg" />
+                        <div class="btn-container">
+                            <a href="ACCESSORIES.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>                    
+                <div class="product-item">
+                    <img src="ACCESSORIES/4.jpg" />
+                        <div class="btn-container">
+                            <a href="ACCESSORIES.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>
+                <div class="product-item">
+                    <img src="ACCESSORIES/6.jpg" />
+                        <div class="btn-container">
+                            <a href="ACCESSORIES.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>
+                <div class="product-item">
+                    <img src="Cardigan/3.jpg" />
+                        <div class="btn-container">
+                            <a href="CLEARANCE SALE.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>
+                <div class="product-item">
+                    <img src="BASIC ITEM/2.jpg" />
+                        <div class="btn-container">
+                            <a href="BASIC ITEMS.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div> 
+                <div class="product-item">
+                    <img src="CLEARANCE SALE/3.jpg" />
+                        <div class="btn-container">
+                            <a href="CLEARANCE SALE.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>
+                <div class="product-item">
+                    <img src="DRESS/2.jpg" />
+                        <div class="btn-container">
+                            <a href="DRESS.html" class="btn-buy">Xem Chi Tiết</a>
+                        </div>
+                </div>                     
+                </div>
+                
+                 <div class="double-banner">
+                    <div class="banner-box">
+                        <img src="trangchu/3.jpg"/>
+                    </div>
+                    <div class="banner-box">
+                        <img src="trangchu/4.jpg" />
+                    </div>
+                </div>
+            </article>
+            <footer>
+               <div class="footer-col">
+                    <h1><strong> Moná Saigon </strong></h1>
+                    <p>
+                        Monásaigon là nền tảng bán lẻ mặt hàng thời trang hàng đầu Đông Nam Á, chuyên cung cấp sản phẩm theo xu hướng mới nhất, mang đến trải nghiệm mua sắm thời trang quốc tế đơn giản cho giới trẻ Việt.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/monasaigon"><img src="img/Facebook.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/monasaigon/"><img src="img/instagram.jpg" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@monasaigon?_t=ZS-8wZUNDcDuP2&_r=1"><img src="img/tiktok.png" alt="TikTok"></a>
+                        <a href="https://www.lazada.vn/shop/mona-saigon/"><img src="img/Lazada.png" alt="Lazada"></a>
+                        <a href="https://shopee.vn/monasaigon"><img src="img/shopee.jpg" alt="Shopee"></a>
+                    </div>
+               </div>
+    <div class="footer-col">
+        <h3>GIỚI THIỆU</h3>
+        <a href="Trangchi.html">Về MONÁSAIGON </a><br/>
+        <a href="Lienhe.html">Liên Hệ</a><br/>
+        <a href="#">Tin Tức</a>
+    </div>
+    <div class="footer-col">
+        <h3>CHÍNH SÁCH BÁN HÀNG</h3><br/>
+        <a href="#">Chính Sách Vận Chuyển</a><br/>
+        <a href="#">Chính Sách Đổi - Trả Hàng</a><br/>
+        <a href="#">Chính Sách Bảo Mật</a>
+    </div>
+    <div class="footer-col">
+        <h3>THÔNG TIN LIÊN HỆ</h3>
+        <p>Tên công ty: Thương Hiệu Thời Trang nữ MONÁSAIGON</p>
+        <p>Địa chỉ: <a href="https://maps.app.goo.gl/G4xAnP86u8nVKHMB7">4E Võ Thị Sáu, Phường Tân Định, Quận 1, TP. Hồ Chí Minh, Việt Nam</a></p>
+        <p>Liên hệ đặt hàng(Zalo): <a href=" https://zalo.me/0862497780 ">086 249 7780 </a></p>
+        <p>Email: </p>
+    </div>
+        <p style="text-align: center;">@Monásaigon</p>
+            </footer>
+        </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Giỏ hàng </title>
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+    h1, h2, h3, p, label {
+      margin: 0 0 8px 0;
+    }
+    .container {
+      display: flex; max-width: 1200px; margin: 20px auto; gap: 20px;
+    }
+    .wrapper {
+      flex: 1; background: white; padding: 10px; border-radius: 6px;
+      box-shadow: 0 0 5px #ccc;
+      display: flex; flex-wrap: wrap; gap: 15px;
+    }
+    .monHang {
+      width: 220px; background: #fff; border: 1px solid #ddd; border-radius: 8px;
+      overflow: hidden; box-shadow: 0 0 6px #ccc;
+      position: relative; padding-bottom: 50px;
+    }
+    .monHang img {
+      width: 100%; height: 160px; object-fit: cover;
+    }
+    .monHang .name {
+      padding: 8px 12px; font-weight: bold; font-size: 16px; color: #222;
+    }
+    .monHang .gia {
+      padding: 0 12px; font-size: 14px; color: #444;
+      margin-bottom: 8px;
+    }
+    .nutMua {
+      position: absolute;
+      height: 40px;
+      width: 70px;
+      bottom: 10px;
+      left: 60%;
+      padding: 5px 10px;
+      font-size: 12px;
+      border: none;
+      border-radius: 7px;
+      background-color: #107be5;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .nutMua:hover {
+      background-color: #c20f17;
+    }
+    .gioHang {
+      flex: 0.6; background: white; padding: 15px; border-radius: 6px;
+      box-shadow: 0 0 5px #ccc; max-height: 650px; overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .gioHang h1 {
+      text-align: center; margin-bottom: 12px; color: #e5101d;
+    }
+    .gioHang table {
+      width: 100%; border-collapse: collapse;
+    }
+    .gioHang table th, .gioHang table td {
+      border-bottom: 1px solid #ddd; padding: 8px; text-align: center;
+    }
+    .gioHang table th {
+      background: #eee;
+    }
+    .btnRemove {
+      background-color: #999; border: none; color: white;
+      padding: 5px 10px; border-radius: 4px; cursor: pointer;
+    }
+    .btnRemove:hover {
+      background-color: #555;
+    }
+    #tongTien {
+      margin-top: 15px; font-size: 20px; font-weight: bold;
+      text-align: right; color: darkgreen;
+    }
+    #qrcode {
+      margin-top: 15px; text-align: center;
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    input[type=text] {
+      padding: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button.generateQR {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button.generateQR:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center; margin-top: 20px; color:#e5101d;">Chuyển Khoản TPBank Qua VietQR</h2>
+<div style="max-width: 1200px; margin: 0 auto;">
+  <label for="name">Tên người chuyển:</label>
+  <input type="text" id="name" placeholder="Ví dụ: Nguyễn Văn A" />
+
+  <button class="generateQR" onclick="generateQR()">Tạo mã QR thanh toán</button>
+
+  <div id="qrcode"></div>
+  <h1><a href="https://forms.gle/rE4uoWAHtjfApvyE9">Nhập Địa chỉ giao</a></h1>
+
+  <div class="container">
+    <div class="wrapper" id="productList">
+      <!-- Sản phẩm sẽ được tạo ra tự động ở đây -->
+    </div>
+
+    <div class="gioHang">
+      <h1>Giỏ hàng của bạn</h1>
+      <table id="cartTable">
+        <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="cartBody">
+          <!-- Mặt hàng thêm vào giỏ -->
+        </tbody>
+      </table>
+      <h3 id="tongTien">Tổng tiền: 0đ</h3>
+    </div>
+  </div>
+</div>
+
+<script>
+const products = [
+  {id: 'A', name: "Áo thun nữ mặc 2 kiểu tay phồng phối ren thêu họa tiết thời trang mùa hè MONÁ - LUMI TOP", price: 190000, img: "NEW COLLECTION/1.jpg"},
+  {id: 'B', name: "Áo thun nữ tay phồng ôm dáng mặc 2 kiểu hoạ tiết hoa nhí phối ren MONÁ - LEA TOP", price: 450000, img: "NEW COLLECTION/2.jpg"},
+  {id: 'C', name: "Áo thun nữ tay dài ôm dáng cổ vuông cột nơ MONÁ - FLARE TOP", price: 160000, img: "NEW COLLECTION/3.jpg"},
+  {id: 'D', name: "Áo kiểu nữ tay dài chất thun hoạ tiết hoa ren phối nơ thời trang mùa hè MONÁ - BLOOMIE TOP", price: 116000, img: "NEW COLLECTION/4.jpg"},
+  {id: 'E', name: "[Tặng kèm quần bảo hộ] Đầm lụa hở lưng nữ cổ yếm phối nơ MONÁ - EMILY DRESS", price: 524000, img: "NEW COLLECTION/5.jpg"},
+];
+
+let cart = {};
+
+function renderProducts() {
+  const container = document.getElementById('productList');
+  container.innerHTML = '';
+  products.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'monHang';
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <p class="name">${p.name}</p>
+      <p class="gia">Giá: ${p.price.toLocaleString('vi-VN')}đ</p>
+      <button class="nutMua" onclick="addToCart('${p.id}')">Mua</button>`;
+    container.appendChild(div);
+  });
+}
+
+function addToCart(productId) {
+  if (cart[productId]) {
+    cart[productId].quantity++;
+  } else {
+    const product = products.find(p => p.id === productId);
+    cart[productId] = { product, quantity: 1 };
+  }
+  renderCart();
+}
+
+function removeFromCart(productId) {
+  delete cart[productId];
+  renderCart();
+}
+
+function updateQuantity(productId, quantity) {
+  quantity = parseInt(quantity);
+  if (quantity < 1) return;
+  if (cart[productId]) {
+    cart[productId].quantity = quantity;
+    renderCart();
+  }
+}
+
+function calcTotal() {
+  let total = 0;
+  Object.values(cart).forEach(item => {
+    total += item.product.price * item.quantity;
+  });
+  return total;
+}
+
+function renderCart() {
+  const tbody = document.getElementById('cartBody');
+  tbody.innerHTML = '';
+  Object.values(cart).forEach(item => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${item.product.name}</td>
+      <td>${item.product.price.toLocaleString('vi-VN')}đ</td>
+      <td><input type="number" min="1" value="${item.quantity}" style="width:60px" onchange="updateQuantity('${item.product.id}', this.value)" /></td>
+      <td>${(item.product.price * item.quantity).toLocaleString('vi-VN')}đ</td>
+      <td><button class="btnRemove" onclick="removeFromCart('${item.product.id}')">Xóa</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const totalEl = document.getElementById('tongTien');
+  totalEl.innerText = `Tổng tiền: ${calcTotal().toLocaleString('vi-VN')}đ`;
+}
+
+function generateQR() {
+  const name = document.getElementById('name').value.trim();
+  if (!name) {
+    alert('Vui lòng nhập tên người chuyển khoản!');
+    return;
+  }
+
+  const total = calcTotal();
+  if (total <= 0) {
+    alert('Giỏ hàng của bạn đang trống!');
+    return;
+  }
+
+  const bankCode = "MBBMBB";
+  const accountNumber = "0363726692";
+  const productCodesWithQty = Object.values(cart)
+    .map(item => `${item.product.id}×${item.quantity}`)
+    .join('-');
+
+  const addInfo = encodeURIComponent(`Thanh toan tu ${name} - SP: ${productCodesWithQty}`);
+
+  const qrUrl = `https://img.vietqr.io/image/MB-0363726692-compact2.png?amount=${total.toFixed(2)}&addInfo=${addInfo}`;
+  document.getElementById('qrcode').innerHTML = `
+    <p><strong>Nội dung chuyển khoản:</strong> Thanh toán từ ${name} - SP: ${productCodesWithQty}</p>
+    <img src="${qrUrl}" alt="QR thanh toán TPBank VietQR" style="max-width:250px; margin-top: 10px;" />
+  `;
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
